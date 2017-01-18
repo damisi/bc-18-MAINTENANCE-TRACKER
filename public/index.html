@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta charset="utf-8">
+	<script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/styling.css">
+	
+	<title>Maintenance Tracker</title>
+
+</head>
+<body>
+	
+<!-- <button class="btn btn-success form-control" id='serviceMasterShow'>Add Employee</button>	 -->
+<div class="button">
+    <button id="addEmployeeBtn" class="btn btn-action">Add Employee</button>
+</div>
+<div id= 'addEmployee'>
+	<h1 id = 'top'>Add Employee</h1>
+	<div class="form-group">
+		<label for="name">NAME</label>
+		<input type="text" class="form-control" name="name" id="name">
+	</div>
+	<div class="form-group">
+		<label for="phoneNumber">PHONE NUMBER</label>
+		<input type="text" class="form-control" name="phoneNumber" id="phoneNumber">
+	</div>
+	<div class="form-group">
+		<label for="equipment">LEVEL</label>
+		<select name="equipment" id="equipmentServicing" class="form-control">
+			<option value="" selected>Choose Equipment</option>
+			<option value="generator">Generator</option> 
+			<option value="rice cooker">Rice Cooker</option>
+			<option value="rotisserie oven">Rotisserie Oven</option>
+			<option value="deep fryer">Deep Fryer</option>
+			<option value="solar oven">Solar Oven</option>
+			<option value="gas oven">Gas Oven</option>
+			<option value="heating cabinet">Heating Cabinet</option>
+			<option value="solar inverter">Solar Inverter</option>
+		</select>
+	</div>
+	
+	<div class="form-group">
+		<button class="btn btn-success form-control" id='addServiceMaster'>Submit</button>
+		<button class="btn btn-success form-control" id='closeAddEmployee'>Close</button>
+	</div>
+	
+</div>
+	
+	<div>
+		<table style="width:100%" border="1" id= "issues">
+		<caption>MAINTENANCE ISSUES</caption>
+			<tr class = 'issueRow'>
+			<td><button class='editbtn'>X</button>total</td>
+			</tr>
+		</table>
+	</div>
+
+
+<!-- <table id="issuers" style=" width: 80%"> </table>
+ -->	
+<script src= "app.js"></script>
+
+
+</body>
+</html>

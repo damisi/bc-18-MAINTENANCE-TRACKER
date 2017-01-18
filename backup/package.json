@@ -1,0 +1,31 @@
+{
+  "name": "maintenance-tracker",
+  "version": "1.0.0",
+  "description": "tracking maintenance issues of a company",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "firebase": "^3.6.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damisi/bc-18-MAINTENANCE-TRACKER.git"
+  },
+  "keywords": [
+    "maintenance",
+    "tracker",
+    "express",
+    "firebase"
+  ],
+  "author": "pikuda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damisi/bc-18-MAINTENANCE-TRACKER/issues"
+  },
+  "homepage": "https://github.com/damisi/bc-18-MAINTENANCE-TRACKER#readme"
+}
