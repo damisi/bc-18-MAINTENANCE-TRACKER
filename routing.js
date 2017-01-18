@@ -3,7 +3,8 @@ var app = express();
 
 // app.set = ('view engine','ejs');
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use('/', express.static(__dirname + '/public', { index: 'loginpage.html' }));
 
 
 // app.get('/history/:store', function(req, res){
