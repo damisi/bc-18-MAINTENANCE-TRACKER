@@ -8,6 +8,5 @@ app.use(express.static('public'))
 // app.get('/history/:store', function(req, res){
 // 	res.render('history',{store: req.params.store})
 // });
-
-
-app.listen(3000);
+var port = process.env.PORT || 3000;
+app.listen(port);
