@@ -4,9 +4,11 @@
   "description": "tracking maintenance issues of a company",
   "main": "app.js",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
-    "firebase": "^3.6.6"
+    "firebase": "^3.6.6",
+    "twilio": "^2.11.1"
   },
   "devDependencies": {},
   "scripts": {

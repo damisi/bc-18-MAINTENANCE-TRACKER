@@ -29,10 +29,7 @@ $(document).ready(function() {});
 	
 	
 	
-	$('#goToLog').hide();
-	$('#btnLogout').hide();
-	$('#addEmployee').hide();
-	$('#addIssues').hide();
+	$('#goToLog, #btnLogout, #addEmployee, #addIssues').hide();
 	
 
 	$("#addServiceMaster").click(function(){
@@ -51,6 +48,7 @@ $(document).ready(function() {});
 					"equipment servicing": equipment				
 				});
 				alert("Employee added");
+				$('#addEmployee').hide();
 			});
 		};
 
@@ -59,14 +57,13 @@ $(document).ready(function() {});
 	// $("#addIssues").click(function(){
 	// 		issuesListRef.push({issues});
 	
-
 	var issuesListRef = myFire.database().ref().child('issues list');
 
 	var	masterRef = myFire.database().ref().child('service master');
 
-	$("#addIssues").click(function(){
+	$("#addRequest").click(function(){
 		console.log('add issue clicked');
-		var store = document.getElementById("store").value;
+		var store = document.getElementById("storeList").value;
 		var equipment = document.getElementById("issueEquipment").value;
 		var issue = document.getElementById("issue").value;
 
@@ -74,10 +71,13 @@ $(document).ready(function() {});
 			alert('please fill all fields');
 		}else{
 			issuesListRef.once('value', function(snap) {
+				issue = store + " has the following issue: " + issue;
 				issuesListRef.push({
-					'issue': issue
+					'issue': issue,
+					'status': 'new'
 				});
 				alert("Issue Logged");
+				$('#addIssues').hide();
 				masterRef.on("child_added", function(snap) {
 					var master = snap.val().name;
 				});
@@ -86,19 +86,31 @@ $(document).ready(function() {});
 	});
 
 	issuesListRef.on("child_added", function(snap) {
-		var total = snap.val().issue
-		$('#issues').append(
-		'<li id="' + snap.key + '">' + total +                   
-       // '<button data-event="done">Done</button> ' +    
-       '<li><button  class= "delete">Delete</button><li>' 
-       +  '<li id= "master">'+ master +'</li></li>');
+		var total = snap.val().issue;
+		var master = snap.val().name;
 
-		$('.delete').click(function(error){
-			error.preventDefault();
+		$('#issues').append(
+		'<li id="' + snap.key + '"> '+ total +                   
+       '</br><button  class= "delete">Issue Resolved</button> <button  class= "escalate">Escalate</button><a href="#">Contact ' 
+       + master +'?</a></li>');
+
+		$('.delete').click(function(){
+
 			console.log('delete clicked');
 			var pushId = $(this).parent().attr('id');
 			console.log(pushId);
 			issuesListRef.child(pushId).remove();
+		});
+
+		$('.escalate').click(function(){
+			
+			console.log('escalate clicked');
+			var pushId = $(this).parent().attr('id');
+			console.log(pushId);
+
+			issuesListRef.child(pushId).update({
+				status : 'escalated'
+			});
 		});
 
 	});
@@ -155,10 +167,9 @@ $(document).ready(function() {});
 		myFire.auth().signOut().then(function() {
 			console.log("Logged out!")
 			document.getElementById('sign-in-status').textContent = 'Logged out!'
-			$('#goToLog').hide();
-			$('#btnLogout').hide();
-			$('#btnLogin').show();
-			$('#btnSignUp').show();
+			$('#goToLog, #btnLogout').hide();
+			$('#btnLogin, #btnSignUp').show();
+
 		}, function(error) {
 			console.log(error.code);
 			console.log(error.message);
@@ -185,16 +196,8 @@ $(document).ready(function() {});
 			console.log(user);
 			var email = user.email;
 			document.getElementById('sign-in-status').textContent = email + ' is signed in';
-			$('#goToLog').show();
-			$('#btnLogout').show();
-			$('#btnLogin').hide();
-			$('#btnSignUp').hide();
-			// $('#btnLogOut').show();
-			// $('#btnSignUp').hide();
-			////alert("Login Success");
-			//$.session.set('loggedIn', 'yes');
-			//window.location.replace("/dashboard.html");
-
+			$('#goToLog, #btnLogout').show();
+			$('#btnLogin, #btnSignUp').hide();
 	    }
 		else {
 			console.log("not logged in");
