@@ -11,8 +11,9 @@ app.use('/', express.static(__dirname + '/public', { index: 'loginpage.html' }))
 // app.get('/history/:store', function(req, res){
 // 	res.render('history',{store: req.params.store})
 // });
-app.set('port',process.env.PORT || 3000);
+// app.set('port',process.env.PORT || 3000);
+var port = process.env.PORT || 3000
 
-app.listen(app.get('port'),function() {
+app.listen(port,function() {
     console.log('Maintenance Tracker running. To terminate press Ctrl + C.');
 });
