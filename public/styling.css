@@ -3,12 +3,6 @@ html, body {
 
 }
 
-.holder{
-	/*border: 2px solid black;*/
-	text-align: right;
-
-}
-
 .container {
 	/*border: 2px solid black;*/
 	margin: 0 auto;
@@ -20,6 +14,11 @@ html, body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+p .container {
+	text-align: right;
+	color: red;
 }
 
 h1 {

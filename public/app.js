@@ -382,12 +382,13 @@ $(document).ready(function() {});
 	});
 	$('#goToLog').click(function(){
 		myFire.auth().onAuthStateChanged(function(user) {
+			window.location.href = '/issuesPage.html';
 			if (user.email !== "damisi@gmail.com"){
 				$('#addEmployee').hide();
 			}else{
 				$('#addEmployee').show();
 			}
-			window.location.href = '/index.html';
+			
 		});
 	});
 
