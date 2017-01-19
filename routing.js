@@ -5,6 +5,10 @@ var app = express();
 
 // app.use(express.static('public'));
 app.use('/', express.static(__dirname + '/public', { index: 'loginpage.html' }));
+
+app.get("/", function(req, res, next){
+	res.sendStatus(200);
+})
 // app.use('/maintenance issues', express.static(__dirname + '/public', { index: 'index.html' }));
 
 
