@@ -1,4 +1,5 @@
-$(document).ready(function() {
+$(document).ready(function() {});
+
   // Initialize Firebase
   	
 
@@ -273,26 +274,41 @@ $(document).ready(function() {
 
 	var issuesListRef = myFire.database().ref().child('issues list');
 
-	issuesListRef.orderByKey().on("child_added", function(snap) {
+	issuesListRef.on("child_added", function(snap) {
 		var total = snap.val().issue
-		$('#issues').append("<tr class = 'issueRow'><td><button class='editbtn'>X</button>" + total + "</td></tr>")
-		total = '(DONE)' + total;
-		console.log(total);
-		console.log('---------');
-		console.log(snap.val());
-		console.log('---------');
-		console.log(snap.val().key);
-		console.log('---------');
-		console.log(snap.val().issue.key);
-		
+		$('#issues').append(
+		'<li id="' + snap.key + '">' + total +                   
+       // '<button data-event="done">Done</button> ' +    
+       '<button  class= "delete">Delete</button>' + '</li>');
+
+		$('.delete').click(function(error){
+			error.preventDefault();
+			console.log('delete clicked');
+			var pushId = $(this).parent().attr('id');
+			console.log(pushId);
+			issuesListRef.child(pushId).remove();
+		});
+
 	});
 
+	issuesListRef.on("child_removed", function(snap) {
+		console.log('it has just been removed');
+		var liRemoved = document.getElementById(snap.key);
+		console.log(snap.key);
+		liRemoved.remove();
+
+	});
+
+
+	// total = '(DONE)' + total;
+	
 	$(".editbtn").click(function(){
 		$(this).parent().css('text-decoration','line-through')
 		console.log('editbtn clicked');
 
 	});
-	
+
+		
 	$("#addEmployeeBtn").click(function(){
 		$('#addEmployee').show();
 	});
@@ -364,7 +380,16 @@ $(document).ready(function() {
 			// btnLogOut.classList.remove('hide');
 	    }
 	});
-
+	$('#goToLog').click(function(){
+		myFire.auth().onAuthStateChanged(function(user) {
+			if (user.email !== "damisi@gmail.com"){
+				$('#addEmployee').hide();
+			}else{
+				$('#addEmployee').show();
+			}
+			window.location.href = '/index.html';
+		});
+	});
 
 	
 	
@@ -385,7 +410,6 @@ $(document).ready(function() {
 	dbRefThatone.on('value', snap => {
 		thatone.innerText = snap.val()
 	};*/
-});
 
 
 

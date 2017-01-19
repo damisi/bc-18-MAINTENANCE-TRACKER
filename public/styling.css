@@ -1,0 +1,36 @@
+html, body {
+	margin: 0;
+
+}
+
+.holder{
+	/*border: 2px solid black;*/
+	text-align: right;
+
+}
+
+.container {
+	/*border: 2px solid black;*/
+	margin: 0 auto;
+	padding: 20px 20px 20px;
+	width: 40%;
+	height: 40%;
+	text-align: center;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+h1 {
+	font-family: 
+}
+
+#top{
+	font-family: helvetica;
+	color: red;
+}
+.addEmployee{
+	margin: 0 auto;
+	padding: 20px 20px 20px;
+}
