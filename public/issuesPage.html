@@ -29,7 +29,7 @@
 		<input type="text" class="form-control" name="phoneNumber" id="phoneNumber">
 	</div>
 	<div class="form-group">
-		<label for="equipment">LEVEL</label>
+		<label for="equipment">EQUIPMENT</label>
 		<select name="equipment" id="equipmentServicing" class="form-control">
 			<option value="" selected>Choose Equipment</option>
 			<option value="generator">Generator</option> 
@@ -49,6 +49,43 @@
 	</div>
 	
 </div>
+
+<div class="button">
+    <button id="addIssuesBtn" class="btn btn-action">Add Issue</button>
+</div>
+<div id= 'addIssues'>
+	<h1 id = 'top'>Add Issue</h1>
+	<div class="form-group">
+		<label for="store">STORE</label>
+		<input type="text" class="form-control" name="store" id="store">
+	</div>
+	<div class="form-group">
+		<label for="issueEquipment">EQUIPMENT</label>
+		<select name="issueEquipment" id="issueEquipment" class="form-control">
+			<option value="" selected>Choose Equipment</option>
+			<option value="generator">Generator</option> 
+			<option value="rice cooker">Rice Cooker</option>
+			<option value="rotisserie oven">Rotisserie Oven</option>
+			<option value="deep fryer">Deep Fryer</option>
+			<option value="solar oven">Solar Oven</option>
+			<option value="gas oven">Gas Oven</option>
+			<option value="heating cabinet">Heating Cabinet</option>
+			<option value="solar inverter">Solar Inverter</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="issue">ISSUE</label>
+		<input type="text" class="form-control" name="issue" id="issue">
+	</div>
+	
+	<div class="form-group">
+		<button class="btn btn-success form-control" id='addIssues'>Submit</button>
+		<button class="btn btn-success form-control" id='closeAddIssues'>Close</button>
+	</div>
+	
+</div>
+
+
 	
 	<div>
 		<ul id= "issues">

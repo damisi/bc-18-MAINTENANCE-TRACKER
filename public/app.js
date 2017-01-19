@@ -13,33 +13,26 @@ $(document).ready(function() {});
 	var myFire = firebase.initializeApp(config);
 	
 	myFireRef = myFire.database().ref();
-	
-	var	serviceMasterFiveRef = myFire.database().ref('service master/5');
-	var	serviceMasterSixRef = myFire.database().ref('service master/6');
-	var	serviceMasterSevenRef = myFire.database().ref('service master/7');
-	var	serviceMasterEightRef = myFire.database().ref('service master/8');
-	var	serviceMasterNineRef = myFire.database().ref('service master/9');
-	var	serviceMasterTenRef = myFire.database().ref('service master/10');
 
-	var storeOneEquipRef = myFire.database().ref('stores/1/equipment');
-	var storeTwoEquipRef = myFire.database().ref('stores/2/equipment');
-	var storeThreeEquipRef = myFire.database().ref('stores/3/equipment');
-	var storeFourEquipRef = myFire.database().ref('stores/4/equipment');
-	var storeFiveEquipRef = myFire.database().ref('stores/5/equipment');
-	var storeSixEquipRef = myFire.database().ref('stores/6/equipment');
-	var storeSevenEquipRef = myFire.database().ref('stores/7/equipment');
+	var	serviceMasterRef = myFire.database().ref('service master');
+	
+
+	// var storeOneEquipRef = myFire.database().ref('stores/1/equipment');
+	// var storeTwoEquipRef = myFire.database().ref('stores/2/equipment');
+	// var storeThreeEquipRef = myFire.database().ref('stores/3/equipment');
+	// var storeFourEquipRef = myFire.database().ref('stores/4/equipment');
+	// var storeFiveEquipRef = myFire.database().ref('stores/5/equipment');
+	// var storeSixEquipRef = myFire.database().ref('stores/6/equipment');
+	// var storeSevenEquipRef = myFire.database().ref('stores/7/equipment');
 
 
 	
 	
 	
-	var store = document.getElementById("");
 	$('#goToLog').hide();
 	$('#btnLogout').hide();
 	$('#addEmployee').hide();
-	
-	
-
+	$('#addIssues').hide();
 	
 
 	$("#addServiceMaster").click(function(){
@@ -51,235 +44,54 @@ $(document).ready(function() {});
 		if (name === "" || equipment === "" ||number === ""){
 			alert('please fill all fields');
 		}else{
-			serviceMasterFiveRef.once('value', function(snap) {
-				if(snap.val()===""){
-					serviceMasterFiveRef.update({
-						"name" : name,
-						"Phone number": number,
-						"equipment servicing": equipment
-						
-					});
-					alert("Employee added");
-				}else{
-					serviceMasterSixRef.once('value', function(snap){
-						if(snap.val() ===""){
-							serviceMasterSixRef.update({
-								"name" : name,
-								"Phone number": number,
-								"equipment servicing":equipment
-								
-							});
-							alert("Employee added");
-						}else{
-							serviceMasterSevenRef.once('value', function(snap){
-								if(snap.val() ===""){
-									serviceMasterSevenRef.update({
-										"name" : name,
-										"Phone number": number,
-										"equipment servicing":equipment
-										
-									});
-									alert("Employee added");
-								}else{
-									serviceMasterEightRef.once('value', function(snap){
-										if(snap.val() ===""){
-											serviceMasterEightRef.update({
-												"name" : name,
-												"Phone number": number,
-												"equipment servicing":equipment
-												
-											});
-											alert("Employee added");
-										}else{
-											serviceMasterNineRef.once('value', function(snap){
-												if(snap.val() ===""){
-													serviceMasterNineRef.update({
-														"name" : name,
-														"Phone number": number,
-														"equipment servicing":equipment
-														
-													});
-													alert("Employee added");
-												}else{
-													serviceMasterTenRef.once('value', function(snap){
-														if(snap.val() ===""){
-															serviceMasterTenRef.update({
-																"name" : name,
-																"Phone number": number,
-																"equipment servicing":equipment
-																
-															});
-															alert("Employee added");
-														}else{
-															alert("You are not authorized, please contact the board");
-														}
-													});
-												}
-											});
-										}
-									});
-								}
-							});
-						}
-					});
-				};
+			serviceMasterRef.once('value', function(snap) {
+				serviceMasterRef.push({
+					"name" : name,
+					"Phone number": number,
+					"equipment servicing": equipment				
+				});
+				alert("Employee added");
+			});
+		};
+
+	});
+
+	// $("#addIssues").click(function(){
+	// 		issuesListRef.push({issues});
+	
+
+	var issuesListRef = myFire.database().ref().child('issues list');
+
+	var	masterRef = myFire.database().ref().child('service master');
+
+	$("#addIssues").click(function(){
+		console.log('add issue clicked');
+		var store = document.getElementById("store").value;
+		var equipment = document.getElementById("issueEquipment").value;
+		var issue = document.getElementById("issue").value;
+
+		if (store === "" || equipment === "" ||issue === ""){
+			alert('please fill all fields');
+		}else{
+			issuesListRef.once('value', function(snap) {
+				issuesListRef.push({
+					'issue': issue
+				});
+				alert("Issue Logged");
+				masterRef.on("child_added", function(snap) {
+					var master = snap.val().name;
+				});
 			});
 		};
 	});
-
-	$("#addIssues").click(function(){
-		if (store === "PK-Ajegule" && equipment === "generator"){
-
-			storeOneEquipRef.update({
-				generator : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Ajegule" && equipment === "rice cooker"){
-
-			storeOneEquipRef.update({
-				"rice cooker" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Ajegule" && equipment === "rotisserie oven"){
-
-			storeOneEquipRef.update({
-				"rotisserie oven" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Bodija" && equipment === "deep fryer"){
-
-			storeTwoEquipRef.update({
-				"deep fryer" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Bodija" && equipment === "solar oven"){
-
-			storeTwoEquipRef.update({
-				"solar oven" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Bodija" && equipment === "rotisserie oven"){
-
-			storeTwoEquipRef.update({
-				"rotisserie oven" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Challenge" && equipment === "deep fryer"){
-
-			storeThreeEquipRef.update({
-				"deep fryer" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Challenge" && equipment === "gas oven"){
-
-			storeThreeEquipRef.update({
-				"gas oven" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Challenge" && equipment === "heating cabinet"){
-
-			storeThreeEquipRef.update({
-				"heating cabinet" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Garki" && equipment === "rice cooker"){
-
-			storeFourEquipRef.update({
-				"rice cooker" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Garki" && equipment === "gas oven"){
-
-			storeFourEquipRef.update({
-				"gas oven" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Garki" && equipment === "solar inverter"){
-
-			storeFourEquipRef.update({
-				"solar inverter" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Ikorodu" && equipment === "deep fryer"){
-
-			storeFiveEquipRef.update({
-				"deep fryer" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Ikorodu" && equipment === "gas oven"){
-
-			storeFiveEquipRef.update({
-				"gas oven" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Ikorodu" && equipment === "heating cabinet"){
-
-			storeFiveEquipRef.update({
-				"heating cabinet" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Wuse" && equipment === "deep fryer"){
-
-			storeSixEquipRef.update({
-				"deep fryer" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Wuse" && equipment === "solar oven"){
-
-			storeSixEquipRef.update({
-				"solar oven" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "PK-Wuse" && equipment === "heating cabinet"){
-
-			storeSixEquipRef.update({
-				"heating cabinet" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		//TESTING
-		if (store === "aaaaaaaaa" && equipment === "oven"){
-
-			storeSevenEquipRef.update({
-				"oven" : issues
-			});
-			issuesListRef.push({issues});
-		}
-		if (store === "aaaaaaaaa" && equipment === "generator"){
-
-			storeSevenEquipRef.update({
-				"generator" : issues
-			});
-			issuesListRef.push({issues});
-		}
-	});
-	// addIssue();
-
-	var issuesListRef = myFire.database().ref().child('issues list');
 
 	issuesListRef.on("child_added", function(snap) {
 		var total = snap.val().issue
 		$('#issues').append(
 		'<li id="' + snap.key + '">' + total +                   
        // '<button data-event="done">Done</button> ' +    
-       '<button  class= "delete">Delete</button>' + '</li>');
+       '<li><button  class= "delete">Delete</button><li>' 
+       +  '<li id= "master">'+ master +'</li></li>');
 
 		$('.delete').click(function(error){
 			error.preventDefault();
@@ -300,6 +112,7 @@ $(document).ready(function() {});
 	});
 
 
+
 	// total = '(DONE)' + total;
 	
 	$(".editbtn").click(function(){
@@ -315,6 +128,14 @@ $(document).ready(function() {});
 
 	$("#closeAddEmployee").click(function(){
 		$('#addEmployee').hide();
+	});
+
+	$("#addIssuesBtn").click(function(){
+		$('#addIssues').show();
+	});
+
+	$("#closeAddIssues").click(function(){
+		$('#addIssues').hide();
 	});
 	
 
@@ -383,6 +204,7 @@ $(document).ready(function() {});
 	$('#goToLog').click(function(){
 		myFire.auth().onAuthStateChanged(function(user) {
 			window.location.href = '/issuesPage.html';
+			console.log(user.email);
 			if (user.email !== "damisi@gmail.com"){
 				$('#addEmployee').hide();
 			}else{
