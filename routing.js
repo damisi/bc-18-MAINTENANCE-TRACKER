@@ -4,7 +4,7 @@ var app = express();
 // app.set = ('view engine','ejs');
 
 // app.use(express.static('public'));
-app.use('/', express.static(__dirname + '/public', { index: 'loginpage.html' }));
+app.use('/', express.static(__dirname + '/public'));
 
 app.get("/", function(req, res, next){
 	res.sendStatus(200);
