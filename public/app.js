@@ -79,7 +79,8 @@ function add(){
 				});
 			});
 			if (master === 'External Vendor'){
-				alert('PLEASE CONTACT AN EXTERNAL VENDOR');
+				alert('NO VENDOR FOR EQUIPMENT PLEASE CONTACT AN EXTERNAL VENDOR');
+				console.log('hello');
 			};
 
 		};
@@ -96,14 +97,13 @@ function childListeners(){
 
 		$('#issues').append(
 		'<li class="list-group-item" id="' + snap.key + '"> <span class= "badge">'+status +'</span>'+ total +                   
-	   '</br><button  class= "delete">Issue Resolved</button> <button  class= "escalate">Escalate</button><a href="#">Contact ' 
+	   '</br><button  class= "delete">Issue Resolved</button> <button  class= "escalate">Escalate</button><a id = "contact" href="#">Contact ' 
 	   + master +'?</a></li>');
 
 		$('.delete').click(function(){
 
 			console.log('delete clicked');
 			var pushId = $(this).parent().attr('id');
-			// console.log(pushId);
 			issuesListRef.child(pushId).remove();
 		});
 
@@ -112,7 +112,6 @@ function childListeners(){
 			$(this).text("ESCALATED");
 			console.log('escalate clicked');
 			var pushId = $(this).parent().attr('id');
-			// console.log(pushId);
 
 			issuesListRef.child(pushId).update({
 				status : '!!TREAT NOW!!  '
