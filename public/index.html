@@ -6,102 +6,49 @@
 	<script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="styling.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/style/styling.css"> -->
 
 	<title>Maintenance Tracker</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 	
-	<!-- <link rel="stylesheet" href="style/style.css"> -->
+	<link rel="stylesheet" href="style/styling.css">
 
 </head>
 <body>
-
-	<div class= 'container'>
-        <p id="sign-in-status"></p>
-        <h1>LOGIN</h1>
-		<input id= 'txtEmail' type="email" placeholder="Email" >
-
-		<input id= 'txtPassword' type="password" placeholder="Password">
-
-		<button id="btnLogin" class="btn btn-action">Log in</button>
-
-		<button id="btnSignUp" class="btn btn-secondary">Sign Up</button>
-
-		<button id="btnLogout" class="btn btn-action">Log out</button>		
+	<p id="sign-in-status" align="right" style="margin: 12px "></p>
+	<div class= 'col-xs-12' id="loginContent">
+        
+	    <h1>LOGIN</h1>
+	    
+	    <div class="col-xs-8">
+		    <label class="col-xs-2 control-label" for="email">EMAIL</label>
+			<input class="form-control" id= 'txtEmail' type="email" placeholder="Email" name="email">
+		</div>
+		<div class="col-xs-8">
+			<label class="col-xs-2 control-label" for="password">PASSWORD</label>
+			<input class="form-control" id= 'txtPassword' type="password" placeholder="Password" name="password">
+		</div>
+		<div class="col-xs-8">
+			<button id="btnLogin" class="btn btn-action">Log in</button>
+		</div>
+		<div class="col-xs-8">
+			<button id="btnSignUp" class="btn btn-secondary">Sign Up</button>
+		</div>
+		<div class="col-xs-8">
+			<button id="btnLogout" class="btn btn-action">Log out</button>	
+		</div>	
 		
 	</div>
     <div class="button">
-        <button id="goToLog" class="btn btn-action">Go to maintenance log</button>
+        <a href="/maintenanceLog"><button class="btn btn-action" id="goToLog">Go to maintenance log</button></a>
     </div>
 
 
-<script src='app.js'></script>
+    
 
-	
-<!-- 	<script>
-		const txtEmail = document.getElementById('txtEmail');
-        const txtPass = document.getElementById('txtPassword');
-        const btnLogin = document.getElementById('btnLogin');
-		const btnSignup = document.getElementById('btnSignup');
-		const btnLogout = document.getElementById('btnLogout');
-
-		$(document).ready(function () {
-            const session_var = $.session.get("loggedIn");
-            if (session_var === "yes") {
-                window.location.replace("/dashboard.html");
-            }
-            else
-            {
-                $.session.set('loggedIn', 'no');
-                $("#btnSignOut").click(function () {
-                    firebase.auth().signOut();
-                });
-                $("#btnSignIn").click(function () {
-                    //$("#email")
-
-                    const config = {
-                        apiKey: "AIzaSyCJ50Vgkap4rY_yX9SpQvGGueLVqycrF3c",
-                        authDomain: "newspaperapp-9fc22.firebaseapp.com",
-                        databaseURL: "https://newspaperapp-9fc22.firebaseio.com",
-                        storageBucket: "newspaperapp-9fc22.appspot.com",
-                        messagingSenderId: "932829429357"
-                    };
-                    firebase.initializeApp(config);
-
-
-
-                    const emai = $("#email").val();
-                    const pass = $("#password").val();
-                    //alert(pass);
-
-                    const auth = firebase.auth();
-                    const promise = auth.signInWithEmailAndPassword(emai, pass);
-                    
-                    //promise
-                    //    .then(user => alert(user))
-                    //    .then(user => console.log(user))
-                    //    .catch(e => alert(e.message));
-                    
-                    firebase.auth().onAuthStateChanged(  => {
-                        if (firebaseUser) {
-                            console.log(firebaseUser);
-                            btnSignOut.classList.remove('hide');
-                            ////alert("Login Success");
-                            //$.session.set('loggedIn', 'yes');
-                            //window.location.replace("/dashboard.html");
-
-                        }
-                        else {
-                            console.log("not logged in");
-                            btnSignOut.classList.remove('hide');
-                        }
-                    });
-                });
-            }
-        });
-	</script> -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src='app.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

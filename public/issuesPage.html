@@ -7,7 +7,7 @@
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="styling.css">
+	<link rel="stylesheet" type="text/css" href="/style/styling.css">
 	
 	<title>Maintenance Tracker</title>
 
@@ -16,20 +16,21 @@
 	
 <!-- <button class="btn btn-success form-control" id='serviceMasterShow'>Add Employee</button>	 -->
 <div class="button">
-    <button id="addEmployeeBtn" class="btn btn-action">Add Employee</button>
+    <button id="addEmployeeBtn" class="btn btn-default btn-md col-xs-2">Add Employee</button>
 </div>
-<div id= 'addEmployee'>
-	<h1 id = 'top'>Add Employee</h1>
-	<div class="form-group">
-		<label for="name">NAME</label>
+
+<div class="form-group" id= 'addEmployee' style="display: inline-block">
+	
+	<div class="col-xs-8">
+		<label class="col-xs-2 control-label" for="name">NAME</label>
 		<input type="text" class="form-control" name="name" id="name">
 	</div>
-	<div class="form-group">
-		<label for="phoneNumber">PHONE NUMBER</label>
+	<div class="col-xs-8">
+		<label class="col-xs-4 control-label" for="phoneNumber">PHONE NUMBER</label>
 		<input type="text" class="form-control" name="phoneNumber" id="phoneNumber">
 	</div>
-	<div class="form-group">
-		<label for="equipment">EQUIPMENT</label>
+	<div class="col-xs-8">
+		<label class="col-xs-4 control-label" for="equipment">EQUIPMENT</label>
 		<select name="equipment" id="equipmentServicing" class="form-control">
 			<option value="" selected>Choose Equipment</option>
 			<option value="generator">Generator</option> 
@@ -43,21 +44,21 @@
 		</select>
 	</div>
 	
-	<div class="form-group">
-		<button class="btn btn-success form-control" id='addServiceMaster'>Submit</button>
-		<button class="btn btn-success form-control" id='closeAddEmployee'>Close</button>
+	<div class="col-xs-12" style="display: inline-block">
+		<button class="btn btn-default btn-md" id='addServiceMaster' style="width: 30%">Submit</button>
+		<button class="btn btn-default btn-md" id='closeAddEmployee' style="width: 30%">Close</button>
 	</div>
 	
 </div>
 
 <div class="button">
-    <button id="addIssuesBtn" class="btn btn-action">Add Issue</button>
+    <button id="addIssuesBtn" class="btn btn-default btn-md col-xs-2">Add Issue</button>
 </div>
-<div id= 'addIssues'>
-	<h1 id = 'top'>Add Issue</h1>
-<a href="#"></a>
-	<div class="form-group">
-		<label for="store">STORE</label>
+<div class="form-group" id= 'addIssues' style="display: inline-block">
+	
+	<a href="#"></a>
+	<div class="col-xs-8" >
+		<label class="col-xs-2 control-label" for="store">STORE</label>
 		<select name="store" id="storeList" class="form-control">
 			<option value="" selected>Choose Store</option>
 			<option value="PK-Ajegule">PK-Ajegule</option> 
@@ -69,8 +70,8 @@
 		</select>
 	</div>
 
-	<div class="form-group">
-		<label for="issueEquipment">EQUIPMENT</label>
+	<div class="col-xs-8">
+		<label class="col-xs-4 control-label" for="issueEquipment">EQUIPMENT</label>
 		<select name="issueEquipment" id="issueEquipment" class="form-control">
 			<option value="" selected>Choose Equipment</option>
 			<option value="generator">Generator</option> 
@@ -83,27 +84,30 @@
 			<option value="solar inverter">Solar Inverter</option>
 		</select>
 	</div>
-	<div class="form-group">
-		<label for="issue">ISSUE</label>
+	<div class="col-xs-8">
+		<label class="col-xs-4 control-label" for="issue">ISSUE</label>
 		<input type="text" class="form-control" name="issue" id="issue">
 	</div>
 	
-	<div class="form-group">
-		<button class="btn btn-success form-control" id='addRequest'>Submit</button>
-		<button class="btn btn-success form-control" id='closeAddIssues'>Close</button>
+	<div class="col-xs-12" style="display: inline-block">
+		<button class="btn btn-default btn-md" id='addRequest' style="width: 30%">Submit</button>
+		<button class="btn btn-default btn-md" id='closeAddIssues' style="width: 30%">Close</button>
 	</div>
 	
 </div>
 
 
 	
-	<div>
+	<div class="col-xs-12">
+		<h2>Maintenance Issues</h2>
 		<ul id= "issues">
 		<!-- <caption>MAINTENANCE ISSUES</caption> -->
 		</ul>
 	</div>
 
-
+<div class="col-xs-8">
+	<a href="/"><button id="btnLogoutLog" class="btn btn-action">Log out</button>	</a>
+</div>
 <!-- <table id="issuers" style=" width: 80%"> </table>
  -->	
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
