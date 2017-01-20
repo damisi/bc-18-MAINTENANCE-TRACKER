@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 
+
 var path = __dirname + '/public';
 
 // app.set = ('view engine','ejs');
@@ -12,7 +13,7 @@ app.get("/", function(req, res, next){
 	res.sendStatus(200);
 })
 
-app.get("/maintenanceLog",function(req,res){
+app.get("/issuesPage",function(req,res){
   res.sendFile(path + "/issuesPage.html");
 });
 

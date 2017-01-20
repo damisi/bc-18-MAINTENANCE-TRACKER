@@ -47,32 +47,43 @@ function add(){
 		var store = document.getElementById("storeList").value;
 		var equipment = document.getElementById("issueEquipment").value;
 		var issue = document.getElementById("issue").value;
+		var master;
 
 		if (store === "" || equipment === "" ||issue === ""){
 			alert('please fill all fields');
 		}else{
-			issuesListRef.once('value', function(snap) {
-				// 
-				issue = store + " has the following issue: " + issue;
-				issuesListRef.push({
-					'issue': issue,
-					'status': 'NEW!!  '
-				});
-				alert("Issue Logged");
-				$('#addIssues').hide();
-				masterRef.on("value", function(snap) {
-					snap.forEach(function(childSnap){
-						if(equipment === childSnap.val().equipmentServicing){
-							var master = childSnap.val().name;
-							// console.log(master);
-						}else{
-							master = 'External Vendor';
-						};
-					});
-					
+
+			masterRef.on("value", function(snap) {
+				snap.forEach(function(snap){
+					if(equipment == snap.val().equipmentServicing){
+						master = snap.val().name;
+						console.log(master);
+						issuesListRef.once('value', function(snap) {
+							issue = store + " has the following issue with "+ equipment + ":  " + issue;
+							issuesListRef.push({
+								'issue': issue,
+								'status': 'NEW!!  ',
+								'serviceMaster' : master
+							});
+							alert("Issue Logged");
+							$('#addIssues').hide();
+				
+						});
+
+						return true;
+					}else{
+						master = 'External Vendor';
+						
+					};
+
 				});
 			});
+			if (master === 'External Vendor'){
+				alert('PLEASE CONTACT AN EXTERNAL VENDOR');
+			};
+
 		};
+
 	});
 };
 
@@ -80,7 +91,7 @@ function childListeners(){
 	issuesListRef.on("child_added", function(snap) {
 		var total = snap.val().issue;
 		var status = snap.val().status;
-		var master;
+		var master = snap.val().serviceMaster;
 		
 
 		$('#issues').append(

@@ -74,14 +74,14 @@
 		<label class="col-xs-4 control-label" for="issueEquipment">EQUIPMENT</label>
 		<select name="issueEquipment" id="issueEquipment" class="form-control">
 			<option value="" selected>Choose Equipment</option>
-			<option value="generator">Generator</option> 
-			<option value="rice cooker">Rice Cooker</option>
-			<option value="rotisserie oven">Rotisserie Oven</option>
-			<option value="deep fryer">Deep Fryer</option>
-			<option value="solar oven">Solar Oven</option>
-			<option value="gas oven">Gas Oven</option>
-			<option value="heating cabinet">Heating Cabinet</option>
-			<option value="solar inverter">Solar Inverter</option>
+			<option value="Generator">Generator</option> 
+			<option value="Rice Cooker">Rice Cooker</option>
+			<option value="Rotisserie Oven">Rotisserie Oven</option>
+			<option value="Deep Fryer">Deep Fryer</option>
+			<option value="Solar Oven">Solar Oven</option>
+			<option value="Gas Oven">Gas Oven</option>
+			<option value="Heating Cabinet">Heating Cabinet</option>
+			<option value="Solar Inverter">Solar Inverter</option>
 		</select>
 	</div>
 	<div class="col-xs-8">
@@ -113,9 +113,38 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src= "app.js"></script>
 <script type="text/javascript">
-	// function deleteFunction(){
-	// 	console.log('hello')
-	// }
+var Jusibe = require('jusibe');
+ 
+var jusibe = new Jusibe("5a743e25a7fa4d2643af4fc53400d23a", "Ybc2ae7f4d5b89d446ca916481b41ba8f");
+
+var config = {
+	apiKey: "AIzaSyBUMVJxXB1jyfWi3a6yY1UDuezKYfAdHu4",
+	authDomain: "maintenance-tracker-4e247.firebaseapp.com",
+	databaseURL: "https://maintenance-tracker-4e247.firebaseio.com",
+	storageBucket: "maintenance-tracker-4e247.appspot.com",
+	messagingSenderId: "162015622216"
+};
+var myFire = firebase.initializeApp(config);
+myFireRef = myFire.database().ref();
+
+function sendSms(){
+	$().click(function(){
+		var payload = {
+			to: number,
+			from: 'PK-Coy',
+			message: 'Please open app, there is an issue'
+		};
+		jusibe.sendSMS(payload, function (err, res) {
+			if (res.statusCode === 200){
+				console.log(res.body);
+			}else{
+				console.log(err);
+			}
+		});
+	})
+
+};
+
 </script>
 
 </body>
