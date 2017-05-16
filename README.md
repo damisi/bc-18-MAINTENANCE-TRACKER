@@ -4,7 +4,7 @@ A web app built primarily with Firebase and expressjs
 Introduction
 
 Maintenance Tracker has the name suggests is a Javascript App that tracks maintenance issues.
-Some of I'm the features it has are:
+Some of the features it has include:
 -  login via email 
 -  sign up via email 
 -  log out 
